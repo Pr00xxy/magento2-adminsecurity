@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="prooxxy" sortOrder="10">
+            <label>PrOOxxy</label>
+        </tab>
+        <section id="adminsecurity" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Admin Security</label>
+            <tab>prooxxy</tab>
+            <resource>Admin_Security::adminsecurity_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>General Configuration</label>
+                <field id="email_blocked_addresses" type="textarea" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Allowed email matches</label>
+                    <config_path>prooxxy/adminsecurity/email_matches</config_path>
+                    <comment>Entries must be comma separated</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

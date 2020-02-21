@@ -8,7 +8,7 @@ enforce stronger admin passwords and stricter policy for admin email.
 Use the package manager [composer](https://getcomposer.org) to install this module.
 
 ```bash
-pip install prooxxy/adminsecurity
+composer install prooxxy/adminsecurity
 ```
 
 Make sure the module is enable before start using

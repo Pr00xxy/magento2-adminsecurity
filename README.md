@@ -1,4 +1,4 @@
-# Foobar
+# AdminSecurity
 
 AdminSecurity is a standalone module for magento 2 that aims to
 enforce stronger admin passwords and stricter policy for admin email.

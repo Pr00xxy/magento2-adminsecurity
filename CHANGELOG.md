@@ -18,5 +18,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Password complexity validator has been added
 - Email pattern validator has been added
-
-

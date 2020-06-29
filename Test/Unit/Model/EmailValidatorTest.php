@@ -1,32 +1,16 @@
 <?php
 /**
+ * Copyright © Hampus Westman 2020
+ * See LICENCE provided with this module for licence details
  *
- * EmailValidatorTest.php
- *
- * This file is part of Foobar.
- *
- * AdminSecurity is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * AdminSecurity is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with AdminSecurity.  If not, see <https://www.gnu.org/licenses/>.
- *
- * @category   Pr00xxy
- * @package    AdminSecurity
  * @author     Hampus Westman <hampus.westman@gmail.com>
  * @copyright  Copyright (c) 2020 Hampus Westman
- * @license    https://www.gnu.org/licenses/gpl-3.0.html  GPLv3.0
+ * @license    MIT License https://opensource.org/licenses/MIT
+ * @link       https://github.com/Pr00xxy
  *
  */
 
-namespace PrOOxxy\AdminSecurity\Test\Model;
+namespace PrOOxxy\AdminSecurity\Test\Unit\Model;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use PHPUnit\Framework\TestCase;
@@ -55,7 +39,7 @@ class EmailValidatorTest extends TestCase
 
         $this->config = $this->getMockBuilder(Config::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getAllowedEmailMatches'])
+            ->setMethods(['getAllowedEmailMatches', 'isEmailRestrictionsActive'])
             ->getMock();
 
         $this->model = $this->objectManager->getObject(
@@ -70,12 +54,24 @@ class EmailValidatorTest extends TestCase
      * @test
      * @dataProvider domainDataProvider
      */
-    public function isDomainAllowed(bool $result, string $email, array $domains): void
+    public function isValid(bool $result, string $email, array $domains): void
     {
 
         $this->config->method('getAllowedEmailMatches')->willReturn($domains);
-        $this->assertEquals($result, $this->model->isDomainAllowed($email));
+        $this->config->method('isEmailRestrictionsActive')->willReturn(true);
+        $this->assertEquals($result, $this->model->isValid($email));
 
+    }
+
+    /**
+     * @test
+     * @dataProvider domainDataProvider
+     * @testdox Always return true if the module is turned off
+     */
+    public function isValidWithModuleTurnedOff(bool $result, string $email, array $domains): void
+    {
+        $this->config->method('isEmailRestrictionsActive')->willReturn(false);
+        $this->assertEquals(true, $this->model->isValid($email));
     }
 
     public function domainDataProvider(): array

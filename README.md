@@ -1,6 +1,6 @@
 # AdminSecurity
 
-AdminSecurity is a standalone module for magento 2 that aims to
+AdminSecurity is a module for Magento 2 that aims to
 enforce stronger admin passwords and stricter policy for admin email.
 
 ## Installation
@@ -30,8 +30,9 @@ Passwords will be enforced following all of these criterias:
 
 ### Email adresses
 
+Email restrictions must be enabled explicitly.
 Email enforcement can be configured by wildcard matches in
-Stores -> configuration -> prooxxy -> adminsecurity
+Stores -> configuration -> Advanced -> Admin -> Pr00xxy Admin Security
 
 ![img](./docs/stores_config.png)
 
@@ -43,4 +44,4 @@ or
 `*@company1.com, *@company2.com`
 
 ## License
-[GPL-3.0](https://choosealicense.com/licenses/gpl-3.0/)
+[MIT](https://choosealicense.com/licenses/mit/)

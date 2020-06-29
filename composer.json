@@ -2,17 +2,24 @@
     "name": "prooxxy/adminsecurity",
     "description": "Magento 2 module for stronger admin password and email policies",
     "require": {
-        "php": "~7.1.0|~7.2.0",
-        "magento/magento-composer-installer": "*"
+        "php": "~7.1|~7.2|~7.3",
+        "magento/magento-composer-installer": "*",
+        "magento/module-user": "101.*"
     },
+    "authors": [
+        {
+            "name": "Hampus Westman",
+            "email": "hampus.westman@gmail.com"
+        }
+    ],
     "type": "magento2-module",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "license": [
-        "GPL-3.0"
+        "MIT"
     ],
     "autoload": {
         "files": [
-            "src/registration.php"
+            "registration.php"
         ],
         "psr-4": {
             "PrOOxxy\\AdminSecurity\\src\\": ""
